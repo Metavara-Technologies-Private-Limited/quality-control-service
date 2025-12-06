@@ -3,7 +3,8 @@ from .views import (
     ClinicCreateAPIView,
     ClinicUpdateAPIView,
     GetClinicView,
-    DepartmentEquipmentCreateAPIView
+    DepartmentEquipmentCreateAPIView,
+    DepartmentEquipmentUpdateAPIView
 )
 
 urlpatterns = [
@@ -20,4 +21,11 @@ urlpatterns = [
     path(
         'departments/<int:department_id>/equipments/', 
         DepartmentEquipmentCreateAPIView.as_view(), name='department-equipment-create'),
+
+    path(
+    "departments/<int:department_id>/equipments/<int:equipment_id>/",
+    DepartmentEquipmentUpdateAPIView.as_view(),
+    name="department-equipment-update"
+)
+
 ]

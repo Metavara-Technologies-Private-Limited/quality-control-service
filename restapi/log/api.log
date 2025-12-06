@@ -14,3 +14,185 @@ Error: Clinic not found
 [ERROR] 2025-12-05 10:36:28 restapi.exception_handler:30 ï¿½ [ERROR][2025-12-05 05:06:28.707266][ReqID: 0d7ffa70f6a5][IP: 127.0.0.1]
 Path: /api/departments/45/equipments/
 Error: Department not found
+[ERROR] 2025-12-06 11:31:20 restapi.exception_handler:30 — [ERROR][2025-12-06 06:01:20.580851][ReqID: 264445554f9d][IP: 127.0.0.1]
+Path: /api/departments/1/equipments/2/
+Error: Department not found
+[ERROR] 2025-12-06 11:31:51 restapi.exception_handler:30 — [ERROR][2025-12-06 06:01:51.549779][ReqID: 830b0e4cb47e][IP: 127.0.0.1]
+Path: /api/departments/1/equipments/18/
+Error: Department not found
+[ERROR] 2025-12-06 11:51:57 restapi.exception_handler:30 — [ERROR][2025-12-06 06:21:57.559492][ReqID: 35a1684848e7][IP: 127.0.0.1]
+Path: /api/departments/20/equipments/34/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 11:51:57 django.request:253 — Internal Server Error: /api/departments/20/equipments/34/
+[ERROR] 2025-12-06 11:51:57 django.server:213 — "PUT /api/departments/20/equipments/34/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 11:52:15 restapi.exception_handler:30 — [ERROR][2025-12-06 06:22:15.072881][ReqID: 4473cb299ba2][IP: 127.0.0.1]
+Path: /api/departments/20/equipments/30/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 11:52:15 django.request:253 — Internal Server Error: /api/departments/20/equipments/30/
+[ERROR] 2025-12-06 11:52:15 django.server:213 — "PUT /api/departments/20/equipments/30/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 11:52:28 restapi.exception_handler:30 — [ERROR][2025-12-06 06:22:28.831261][ReqID: 6a373016d5b0][IP: 127.0.0.1]
+Path: /api/departments/20/equipments/20/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 11:52:28 django.request:253 — Internal Server Error: /api/departments/20/equipments/20/
+[ERROR] 2025-12-06 11:52:28 django.server:213 — "PUT /api/departments/20/equipments/20/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 11:52:37 restapi.exception_handler:30 — [ERROR][2025-12-06 06:22:37.784075][ReqID: f8a0ea7f7ea0][IP: 127.0.0.1]
+Path: /api/departments/20/equipments/2/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 11:52:37 django.request:253 — Internal Server Error: /api/departments/20/equipments/2/
+[ERROR] 2025-12-06 11:52:37 django.server:213 — "PUT /api/departments/20/equipments/2/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 11:52:56 restapi.exception_handler:30 — [ERROR][2025-12-06 06:22:56.246295][ReqID: 20c058d1dfdc][IP: 127.0.0.1]
+Path: /api/departments/20/equipments/21/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 11:52:56 django.request:253 — Internal Server Error: /api/departments/20/equipments/21/
+[ERROR] 2025-12-06 11:52:56 django.server:213 — "PUT /api/departments/20/equipments/21/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 11:53:13 restapi.exception_handler:30 — [ERROR][2025-12-06 06:23:13.145206][ReqID: 59b86cfb5523][IP: 127.0.0.1]
+Path: /api/departments/2/equipments/4/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 11:53:13 django.request:253 — Internal Server Error: /api/departments/2/equipments/4/
+[ERROR] 2025-12-06 11:53:13 django.server:213 — "PUT /api/departments/2/equipments/4/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 11:56:03 restapi.exception_handler:30 — [ERROR][2025-12-06 06:26:03.088532][ReqID: f37a2358a099][IP: 127.0.0.1]
+Path: /api/departments/21/equipments/31/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 11:56:03 django.request:253 — Internal Server Error: /api/departments/21/equipments/31/
+[ERROR] 2025-12-06 11:56:03 django.server:213 — "PUT /api/departments/21/equipments/31/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 11:57:37 restapi.exception_handler:30 — [ERROR][2025-12-06 06:27:37.980108][ReqID: d973467fa0c0][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/23/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 11:57:37 django.request:253 — Internal Server Error: /api/departments/14/equipments/23/
+[ERROR] 2025-12-06 11:57:37 django.server:213 — "PUT /api/departments/14/equipments/23/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 11:58:17 restapi.exception_handler:30 — [ERROR][2025-12-06 06:28:17.474795][ReqID: 8d3d71f3991d][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/23/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 11:58:17 django.request:253 — Internal Server Error: /api/departments/14/equipments/23/
+[ERROR] 2025-12-06 11:58:17 django.server:213 — "PUT /api/departments/14/equipments/23/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:02:09 restapi.exception_handler:30 — [ERROR][2025-12-06 06:32:09.059945][ReqID: a34c6608d4ab][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/23/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:02:09 django.request:253 — Internal Server Error: /api/departments/14/equipments/23/
+[ERROR] 2025-12-06 12:02:09 django.server:213 — "PUT /api/departments/14/equipments/23/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:02:38 restapi.exception_handler:30 — [ERROR][2025-12-06 06:32:38.087896][ReqID: fc8471539cd4][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/23/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:02:38 django.request:253 — Internal Server Error: /api/departments/14/equipments/23/
+[ERROR] 2025-12-06 12:02:38 django.server:213 — "PUT /api/departments/14/equipments/23/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:03:22 restapi.exception_handler:30 — [ERROR][2025-12-06 06:33:22.501994][ReqID: 1cfadf3a9849][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/40/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:03:22 django.request:253 — Internal Server Error: /api/departments/14/equipments/40/
+[ERROR] 2025-12-06 12:03:22 django.server:213 — "PUT /api/departments/14/equipments/40/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:03:49 restapi.exception_handler:30 — [ERROR][2025-12-06 06:33:49.257658][ReqID: ea687fe95071][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/40/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:03:49 django.request:253 — Internal Server Error: /api/departments/14/equipments/40/
+[ERROR] 2025-12-06 12:03:49 django.server:213 — "PUT /api/departments/14/equipments/40/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:03:59 restapi.exception_handler:30 — [ERROR][2025-12-06 06:33:59.237619][ReqID: 0cf6bd6a31c0][IP: 127.0.0.1]
+Path: /api/departments/41/equipments/40/
+Error: Department not found
+[ERROR] 2025-12-06 12:06:02 restapi.exception_handler:30 — [ERROR][2025-12-06 06:36:02.852212][ReqID: fe9a912580ca][IP: 127.0.0.1]
+Path: /api/departments/1/equipments/5/
+Error: Department not found
+[ERROR] 2025-12-06 12:06:10 restapi.exception_handler:30 — [ERROR][2025-12-06 06:36:10.124250][ReqID: 13bda05ec605][IP: 127.0.0.1]
+Path: /api/departments/2/equipments/5/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:06:10 django.request:253 — Internal Server Error: /api/departments/2/equipments/5/
+[ERROR] 2025-12-06 12:06:10 django.server:213 — "PUT /api/departments/2/equipments/5/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:06:16 restapi.exception_handler:30 — [ERROR][2025-12-06 06:36:16.443044][ReqID: d6692aa85f16][IP: 127.0.0.1]
+Path: /api/departments/3/equipments/5/
+Error: Department not found
+[ERROR] 2025-12-06 12:06:23 restapi.exception_handler:30 — [ERROR][2025-12-06 06:36:23.179936][ReqID: 0d7a7658e992][IP: 127.0.0.1]
+Path: /api/departments/4/equipments/5/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:06:23 django.request:253 — Internal Server Error: /api/departments/4/equipments/5/
+[ERROR] 2025-12-06 12:06:23 django.server:213 — "PUT /api/departments/4/equipments/5/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:06:29 restapi.exception_handler:30 — [ERROR][2025-12-06 06:36:29.251823][ReqID: 3fbdb309f1de][IP: 127.0.0.1]
+Path: /api/departments/5/equipments/5/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:06:29 django.request:253 — Internal Server Error: /api/departments/5/equipments/5/
+[ERROR] 2025-12-06 12:06:29 django.server:213 — "PUT /api/departments/5/equipments/5/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:06:34 restapi.exception_handler:30 — [ERROR][2025-12-06 06:36:34.805321][ReqID: 177d470f7424][IP: 127.0.0.1]
+Path: /api/departments/6/equipments/5/
+Error: Department not found
+[ERROR] 2025-12-06 12:06:40 restapi.exception_handler:30 — [ERROR][2025-12-06 06:36:40.726120][ReqID: ea137c2bec92][IP: 127.0.0.1]
+Path: /api/departments/7/equipments/5/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:06:40 django.request:253 — Internal Server Error: /api/departments/7/equipments/5/
+[ERROR] 2025-12-06 12:06:40 django.server:213 — "PUT /api/departments/7/equipments/5/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:07:18 restapi.exception_handler:30 — [ERROR][2025-12-06 06:37:18.099941][ReqID: 37e699aa8f12][IP: 127.0.0.1]
+Path: /api/departments/4/equipments/4/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:07:18 django.request:253 — Internal Server Error: /api/departments/4/equipments/4/
+[ERROR] 2025-12-06 12:07:18 django.server:213 — "PUT /api/departments/4/equipments/4/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:07:34 restapi.exception_handler:30 — [ERROR][2025-12-06 06:37:34.307349][ReqID: 700e3a2bc040][IP: 127.0.0.1]
+Path: /api/departments/4/equipments/4/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:07:34 django.request:253 — Internal Server Error: /api/departments/4/equipments/4/
+[ERROR] 2025-12-06 12:07:34 django.server:213 — "PUT /api/departments/4/equipments/4/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:07:42 restapi.exception_handler:30 — [ERROR][2025-12-06 06:37:42.887349][ReqID: 6d7f84ae6ad6][IP: 127.0.0.1]
+Path: /api/departments/4/equipments/4/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:07:42 django.request:253 — Internal Server Error: /api/departments/4/equipments/4/
+[ERROR] 2025-12-06 12:07:42 django.server:213 — "PUT /api/departments/4/equipments/4/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:08:59 restapi.exception_handler:30 — [ERROR][2025-12-06 06:38:59.528099][ReqID: 71a1604d57b4][IP: 127.0.0.1]
+Path: /api/departments/4/equipments/5/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:08:59 django.request:253 — Internal Server Error: /api/departments/4/equipments/5/
+[ERROR] 2025-12-06 12:08:59 django.server:213 — "PUT /api/departments/4/equipments/5/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:09:15 restapi.exception_handler:30 — [ERROR][2025-12-06 06:39:15.272532][ReqID: 3084bf4fa9f4][IP: 127.0.0.1]
+Path: /api/departments/4/equipments/8/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:09:15 django.request:253 — Internal Server Error: /api/departments/4/equipments/8/
+[ERROR] 2025-12-06 12:09:15 django.server:213 — "PUT /api/departments/4/equipments/8/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:13:53 restapi.exception_handler:30 — [ERROR][2025-12-06 06:43:53.010245][ReqID: e0515bb7356a][IP: 127.0.0.1]
+Path: /api/departments/2/equipments/8/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:13:53 django.request:253 — Internal Server Error: /api/departments/2/equipments/8/
+[ERROR] 2025-12-06 12:13:53 django.server:213 — "PUT /api/departments/2/equipments/8/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:22:57 restapi.exception_handler:30 — [ERROR][2025-12-06 06:52:57.387621][ReqID: 44c4591c4fc9][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/23/
+Error: Equipment not found under this department
+[ERROR] 2025-12-06 12:23:58 restapi.exception_handler:30 — [ERROR][2025-12-06 06:53:58.585461][ReqID: 089810c1eaa1][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/23/
+Error: Equipment not found under this department
+[ERROR] 2025-12-06 12:25:19 restapi.exception_handler:30 — [ERROR][2025-12-06 06:55:19.153292][ReqID: 3e3d39cca964][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/23/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:25:19 django.request:253 — Internal Server Error: /api/departments/14/equipments/23/
+[ERROR] 2025-12-06 12:25:19 django.server:213 — "PUT /api/departments/14/equipments/23/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:25:45 restapi.exception_handler:30 — [ERROR][2025-12-06 06:55:45.954002][ReqID: 50cc0db540ed][IP: 127.0.0.1]
+Path: /api/departments/2/equipments/3/
+Error: 'Department' object has no attribute 'equipment_set'
+[ERROR] 2025-12-06 12:25:45 django.request:253 — Internal Server Error: /api/departments/2/equipments/3/
+[ERROR] 2025-12-06 12:25:45 django.server:213 — "PUT /api/departments/2/equipments/3/ HTTP/1.1" 500 61
+[ERROR] 2025-12-06 12:28:34 restapi.exception_handler:30 — [ERROR][2025-12-06 06:58:34.637130][ReqID: 43f1a7a084d7][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/23/
+Error: Equipment not found under this department
+[ERROR] 2025-12-06 12:28:49 restapi.exception_handler:30 — [ERROR][2025-12-06 06:58:49.824507][ReqID: ca36f19c9658][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/20/
+Error: Equipment not found under this department
+[ERROR] 2025-12-06 12:28:57 restapi.exception_handler:30 — [ERROR][2025-12-06 06:58:57.096676][ReqID: e0be1cbbc65c][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/15/
+Error: Equipment not found under this department
+[ERROR] 2025-12-06 12:29:23 restapi.exception_handler:30 — [ERROR][2025-12-06 06:59:23.407177][ReqID: 650a5338136f][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/23/
+Error: Equipment not found under this department
+[ERROR] 2025-12-06 12:30:25 restapi.exception_handler:30 — [ERROR][2025-12-06 07:00:25.807828][ReqID: ab49317616f9][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/23/
+Error: Equipment not found under this department
+[ERROR] 2025-12-06 12:33:17 restapi.exception_handler:30 — [ERROR][2025-12-06 07:03:17.610249][ReqID: 22c28d946075][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/7/
+Error: Equipment not found under this department
+[ERROR] 2025-12-06 12:40:29 restapi.exception_handler:30 — [ERROR][2025-12-06 07:10:29.396185][ReqID: fa2e85936cf3][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/7/
+Error: Equipment not found under this department
+[ERROR] 2025-12-06 12:42:19 restapi.exception_handler:30 — [ERROR][2025-12-06 07:12:19.182317][ReqID: b79a3cfb4ab5][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/7/
+Error: Equipment not found under this department
+[ERROR] 2025-12-06 12:46:29 restapi.exception_handler:30 — [ERROR][2025-12-06 07:16:29.540047][ReqID: 15598cf011ec][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/8/
+Error: Equipment not found under this department
+[ERROR] 2025-12-06 12:46:36 restapi.exception_handler:30 — [ERROR][2025-12-06 07:16:36.414906][ReqID: 777381661710][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/9/
+Error: Equipment not found under this department
+[ERROR] 2025-12-06 12:46:44 restapi.exception_handler:30 — [ERROR][2025-12-06 07:16:44.710450][ReqID: 406b379e09ab][IP: 127.0.0.1]
+Path: /api/departments/14/equipments/14/
+Error: Equipment not found under this department
