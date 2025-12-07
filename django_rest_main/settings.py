@@ -152,7 +152,7 @@ LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
 
-    # ⭐ ADDED: Better formatter for structured logs
+    #  ADDED: Better formatter for structured logs
     "formatters": {
         "detailed": {
             "format": "[{levelname}] {asctime} {name}:{lineno} — {message}",
@@ -161,7 +161,7 @@ LOGGING = {
         },
     },
 
-    # ⭐ Updated API log handler
+    #  Updated API log handler
     "handlers": {
         "api_file": {
             "level": "ERROR",
@@ -171,7 +171,7 @@ LOGGING = {
         },
     },
 
-    # ⭐ Ensuring both Django errors & our app errors go to api.log
+    #  Ensuring both Django errors & our app errors go to api.log
     "loggers": {
         "restapi": {
             "handlers": ["api_file"],

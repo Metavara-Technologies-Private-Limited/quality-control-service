@@ -4,6 +4,8 @@ from rest_framework import status
 from rest_framework.exceptions import NotFound
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
+from rest_framework.exceptions import ValidationError
+
 
 from .models import Clinic, Department, Equipments
 from .serializers import ClinicSerializer, ClinicReadSerializer, EquipmentSerializer
@@ -115,6 +117,7 @@ class DepartmentEquipmentCreateAPIView(APIView):
 
         equipment = serializer.save(dep=department)
         return Response(EquipmentSerializer(equipment).data, status=status.HTTP_201_CREATED)
+
     
 class DepartmentEquipmentUpdateAPIView(APIView):
 
@@ -130,13 +133,13 @@ class DepartmentEquipmentUpdateAPIView(APIView):
     )
     def put(self, request, department_id, equipment_id):
 
-        # 1️⃣ Check if department exists
+        # Check if department exists
         try:
             Department.objects.get(id=department_id)
         except Department.DoesNotExist:
             raise NotFound("Department not found")
 
-        # 2️⃣ Check if equipment belongs to this department
+        # Check if equipment belongs to this department
         equipment = Equipments.objects.filter(
             id=equipment_id, 
             dep_id=department_id
@@ -145,7 +148,7 @@ class DepartmentEquipmentUpdateAPIView(APIView):
         if not equipment:
             raise NotFound("Equipment not found under this department")
 
-        # 3️⃣ Validate and update equipment
+        #  Validate and update equipment
         serializer = EquipmentSerializer(equipment, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
