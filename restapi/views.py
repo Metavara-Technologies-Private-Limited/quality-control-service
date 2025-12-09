@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 # -------------------------------------------------------------------
 #  1. Create Clinic (POST)
-# -------------------------------------------------------------------
+
 class ClinicCreateAPIView(APIView):
 
     @swagger_auto_schema(
@@ -44,13 +44,13 @@ class ClinicCreateAPIView(APIView):
 
         except Exception as e:
             logger.exception(f"Unhandled Clinic Create Error: {e}")
-            return Response({"error": "Internal Server Error"}, status=500)
+            return Response({"error ": "Internal Server Error"}, status=500)
 
 
 
 # -------------------------------------------------------------------
 #  2. Update Clinic (PUT)
-# -------------------------------------------------------------------
+
 class ClinicUpdateAPIView(APIView):
 
     @swagger_auto_schema(
@@ -82,7 +82,7 @@ class ClinicUpdateAPIView(APIView):
             raise NotFound("Clinic not found")
 
         except ValidationError as ve:
-            return Response({"error": ve.detail}, status=400)
+            return Response({"error ": ve.detail}, status=400)
 
         except Exception as e:
             logger.exception(f"Unhandled Clinic Update Error: {e}")
@@ -92,7 +92,7 @@ class ClinicUpdateAPIView(APIView):
 
 # -------------------------------------------------------------------
 #  3. Get Clinic by ID (GET)
-# -------------------------------------------------------------------
+
 class GetClinicView(APIView):
 
     @swagger_auto_schema(
@@ -122,7 +122,6 @@ class GetClinicView(APIView):
 
 # -------------------------------------------------------------------
 #  4. Create Equipment under Department (POST)
-# -------------------------------------------------------------------
 class DepartmentEquipmentCreateAPIView(APIView):
 
     @swagger_auto_schema(
@@ -220,5 +219,5 @@ class DepartmentEquipmentUpdateAPIView(APIView):
 
         except Exception as e:
             logger.error("Unhandled Exception during update:\n" + traceback.format_exc())
-            return Response({"error": "Internal Server Error"}, status=500)
+            return Response({"error ": "Internal Server Error"}, status=500)
 
