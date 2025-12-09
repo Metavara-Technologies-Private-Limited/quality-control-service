@@ -6,6 +6,7 @@ from .views import (
     DepartmentEquipmentCreateAPIView,
     DepartmentEquipmentUpdateAPIView
 )
+# minor update
 
 urlpatterns = [
     # Create Clinic
