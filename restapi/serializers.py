@@ -26,6 +26,7 @@ class EquipmentSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
     equipment_details = EquipmentDetailSerializer(many=True, required=False)
     parameters = ParameterSerializer(many=True, required=False)
+# minor update
 
     class Meta:
         model = Equipments
