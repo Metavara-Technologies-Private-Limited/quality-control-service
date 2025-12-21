@@ -4,7 +4,10 @@ from .views import (
     ClinicUpdateAPIView,
     GetClinicView,
     DepartmentEquipmentCreateAPIView,
-    DepartmentEquipmentUpdateAPIView
+    DepartmentEquipmentUpdateAPIView,
+    EquipmentInactiveAPIView,
+    EquipmentSoftDeleteAPIView,
+   
 )
 
 urlpatterns = [
@@ -22,10 +25,25 @@ urlpatterns = [
         'departments/<int:department_id>/equipments/', 
         DepartmentEquipmentCreateAPIView.as_view(), name='department-equipment-create'),
 
+    #Update Equipment under Department
     path(
     "departments/<int:department_id>/equipments/<int:equipment_id>/",
     DepartmentEquipmentUpdateAPIView.as_view(),
     name="department-equipment-update"
-)
+),
+
+    # in_active Equipment
+    path(
+        'departments/<int:department_id>/equipments/<int:equipment_id>/inactive/',
+        EquipmentInactiveAPIView.as_view()
+    ),
+    # soft delete Equipment
+    path(
+    "departments/<int:department_id>/equipments/<int:equipment_id>/delete/",
+    EquipmentSoftDeleteAPIView.as_view(),
+),
+
+
+
 
 ]
