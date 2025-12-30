@@ -1,32 +1,36 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.exceptions import NotFound, ValidationError, APIException
+from rest_framework.exceptions import NotFound, ValidationError
 from drf_yasg.utils import swagger_auto_schema
 import traceback
-from .models import Clinic, Department, Equipments
-from .serializers import ClinicSerializer, ClinicReadSerializer, EquipmentSerializer
 import logging
+
+from .models import Clinic, Department, Equipments
+from .serializers import (
+    ClinicSerializer,
+    ClinicReadSerializer,
+    EquipmentSerializer,
+    DepartmentSerializer,
+)
 
 logger = logging.getLogger(__name__)
 
-
 # -------------------------------------------------------------------
-#  1. Create Clinic (POST)
+# 1. Create Clinic (POST)
 # -------------------------------------------------------------------
 class ClinicCreateAPIView(APIView):
 
     @swagger_auto_schema(
         operation_description="Create a new clinic",
-        request_body=ClinicSerializer,
+        request_body=ClinicSerializer,   # ✅ WRITE
         responses={
-            201: ClinicSerializer,
+            201: ClinicReadSerializer,        # ✅ READ
             400: "Validation Error",
             500: "Internal Server Error"
         }
     )
     def post(self, request):
-
         try:
             serializer = ClinicSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
@@ -34,21 +38,26 @@ class ClinicCreateAPIView(APIView):
             clinic = serializer.save()
 
             return Response(
-                ClinicSerializer(clinic).data,
+                ClinicReadSerializer(clinic).data,
                 status=status.HTTP_201_CREATED
             )
 
         except ValidationError as ve:
+            logger.warning(f"Clinic validation failed: {ve.detail}")
             return Response({"error": ve.detail}, status=400)
 
-        except Exception as e:
-            logger.exception(f"Unhandled Clinic Create Error: {e}")
-            return Response({"error": "Internal Server Error"}, status=500)
-
+        except Exception:
+            logger.error(
+                "Unhandled Clinic Create Error:\n" + traceback.format_exc()
+            )
+            return Response(
+                {"error": "Internal Server Error"},
+                status=500
+            )
 
 
 # -------------------------------------------------------------------
-#  2. Update Clinic (PUT)
+# 2. Update Clinic (PUT)
 # -------------------------------------------------------------------
 class ClinicUpdateAPIView(APIView):
 
@@ -63,7 +72,6 @@ class ClinicUpdateAPIView(APIView):
         }
     )
     def put(self, request, clinic_id):
-
         try:
             clinic = Clinic.objects.get(id=clinic_id)
 
@@ -73,24 +81,26 @@ class ClinicUpdateAPIView(APIView):
             updated = serializer.save()
 
             return Response(
-                ClinicSerializer(updated).data,
+                ClinicReadSerializer(updated).data,
                 status=status.HTTP_200_OK
             )
 
         except Clinic.DoesNotExist:
+            logger.warning("Clinic not found")
             raise NotFound("Clinic not found")
 
         except ValidationError as ve:
+            logger.warning(f"Clinic update validation failed: {ve.detail}")
             return Response({"error": ve.detail}, status=400)
 
-        except Exception as e:
-            logger.exception(f"Unhandled Clinic Update Error: {e}")
+        except Exception:
+            print(traceback.format_exc)
+            logger.error("Unhandled Clinic Update Error:\n" + traceback.format_exc())
             return Response({"error": "Internal Server Error"}, status=500)
 
 
-
 # -------------------------------------------------------------------
-#  3. Get Clinic by ID (GET)
+# 3. Get Clinic by ID (GET)
 # -------------------------------------------------------------------
 class GetClinicView(APIView):
 
@@ -103,24 +113,23 @@ class GetClinicView(APIView):
         }
     )
     def get(self, request, clinic_id):
-
         try:
             clinic = Clinic.objects.get(id=clinic_id)
-
             serializer = ClinicReadSerializer(clinic)
+
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         except Clinic.DoesNotExist:
+            logger.warning("Clinic not found")
             raise NotFound("Clinic not found")
 
-        except Exception as e:
-            logger.exception(f"Unhandled Clinic Fetch Error: {e}")
+        except Exception:
+            logger.error("Unhandled Clinic Fetch Error:\n" + traceback.format_exc())
             return Response({"error": "Internal Server Error"}, status=500)
 
 
-
 # -------------------------------------------------------------------
-#  4. Create Equipment under Department (POST)
+# 4. Create Equipment under Department (POST)
 # -------------------------------------------------------------------
 class DepartmentEquipmentCreateAPIView(APIView):
 
@@ -135,13 +144,13 @@ class DepartmentEquipmentCreateAPIView(APIView):
         }
     )
     def post(self, request, department_id):
-
         try:
             department = Department.objects.get(id=department_id)
 
             serializer = EquipmentSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
 
+            #  SAME AS BEFORE – serializer handles ParameterValues internally
             equipment = serializer.save(dep=department)
 
             return Response(
@@ -150,20 +159,21 @@ class DepartmentEquipmentCreateAPIView(APIView):
             )
 
         except Department.DoesNotExist:
+            logger.warning("Department not found")
             raise NotFound("Department not found")
 
         except ValidationError as ve:
+            logger.warning(f"Equipment validation failed: {ve.detail}")
             return Response({"error": ve.detail}, status=400)
 
-        except Exception as e:
-            logger.exception(f"Unhandled Equipment Create Error: {e}")
+        except Exception:
+            logger.error("Unhandled Equipment Create Error:\n" + traceback.format_exc())
             return Response({"error": "Internal Server Error"}, status=500)
 
 
-
 # -------------------------------------------------------------------
-#  5. Update Equipment under Department (PUT)
-
+# 5. Update Equipment under Department (PUT)
+# -------------------------------------------------------------------
 class DepartmentEquipmentUpdateAPIView(APIView):
 
     @swagger_auto_schema(
@@ -172,52 +182,124 @@ class DepartmentEquipmentUpdateAPIView(APIView):
         responses={
             200: EquipmentSerializer,
             400: "Validation Error",
-            404: "Department or Equipment not found",
-            500: "Internal Server Error"
+            404: "Equipment not found",
+            500: "Internal Server Error",
         }
     )
     def put(self, request, department_id, equipment_id):
-
         try:
-            logger.info(f"PUT Request Received - dep_id={department_id}, eq_id={equipment_id}")
+            equipment = Equipments.objects.get(
+                id=equipment_id,
+                dep_id=department_id
+            )
 
-            # 1) Check department
-            try:
-                department = Department.objects.get(id=department_id)
-                logger.info("Department found")
-            except Department.DoesNotExist:
-                logger.warning("Department NOT found")
-                raise NotFound("Department not found")
-
-            # 2) Check equipment under department
-            equipment = Equipments.objects.filter(id=equipment_id, dep_id=department_id).first()
-            if not equipment:
-                logger.warning("Equipment NOT found under department")
-                raise NotFound("Equipment not found under this department")
-
-            logger.info("Equipment found under department, validating serializer...")
-
-            # 3) Validate request data
-            serializer = EquipmentSerializer(equipment, data=request.data)
+            serializer = EquipmentSerializer(
+                equipment,
+                data=request.data
+            )
             serializer.is_valid(raise_exception=True)
+            updated = serializer.save()
 
-            logger.info("Serializer valid, saving...")
+            return Response(
+                EquipmentSerializer(updated).data,
+                status=status.HTTP_200_OK
+            )
 
-            updated_equipment = serializer.save()
-
-            logger.info("Save success")
-
-            return Response(EquipmentSerializer(updated_equipment).data, status=200)
+        except Equipments.DoesNotExist:
+            logger.warning("Equipment not found")
+            raise NotFound("Equipment not found")
 
         except ValidationError as ve:
-            logger.error(f"ValidationError: {ve.detail}")
+            logger.warning(f"Equipment update validation failed: {ve.detail}")
             return Response({"error": ve.detail}, status=400)
 
-        except NotFound as nf:
-            logger.warning(str(nf))
-            raise nf  
+        except Exception:
+            logger.error("Unhandled Equipment Update Error:\n" + traceback.format_exc())
+            return Response(
+                {"error": "Internal Server Error"},
+                status=500
+            )
 
-        except Exception as e:
-            logger.error("Unhandled Exception during update:\n" + traceback.format_exc())
+
+
+# -------------------------------------------------------------------
+# 6. Inactivate Equipment (PATCH)
+# -------------------------------------------------------------------
+class EquipmentInactiveAPIView(APIView):
+
+    @swagger_auto_schema(
+        operation_description="Mark equipment as inactive",
+        responses={
+            200: "Equipment marked inactive",
+            404: "Equipment not found",
+            500: "Internal Server Error"
+        }
+    )
+    def patch(self, request, department_id, equipment_id):
+        try:
+            equipment = Equipments.objects.get(
+                id=equipment_id,
+                dep_id=department_id
+            )
+            equipment.is_active = False
+            equipment.save()
+
+            return Response(
+                {"message": "Equipment marked as inactive"},
+                status=status.HTTP_200_OK
+            )
+
+        except Equipments.DoesNotExist:
+            logger.warning("Equipment not found")
+            raise NotFound("Equipment not found")
+
+        except Exception:
+            logger.error("Unhandled Equipment Inactivate Error:\n" + traceback.format_exc())
             return Response({"error": "Internal Server Error"}, status=500)
+
+
+class EquipmentSoftDeleteAPIView(APIView):
+
+    @swagger_auto_schema(
+        operation_description="Soft delete equipment",
+        responses={
+            200: "Equipment soft deleted",
+            404: "Equipment not found",
+            500: "Internal Server Error"
+        }
+    )
+    def patch(self, request, department_id, equipment_id):
+        try:
+            equipment = Equipments.objects.get(
+                id=equipment_id,
+                dep_id=department_id,
+                is_deleted=False
+            )
+
+            equipment.is_deleted = True
+            equipment.is_active = False
+            equipment.save()
+
+            return Response(
+                {"message": "Equipment soft deleted"},
+                status=status.HTTP_200_OK
+            )
+
+        except Equipments.DoesNotExist:
+            logger.warning("Equipment not found")
+            raise NotFound("Equipment not found")
+
+        except Exception:
+            logger.error(
+                "Unhandled Equipment Soft Delete Error:\n" +
+                traceback.format_exc()
+            )
+            return Response(
+                {"error": "Internal Server Error"},
+                status=500
+            )
+
+    # ADD THIS METHOD (THIS IS WHAT FIXES DELETE)
+    def delete(self, request, department_id, equipment_id):
+        return self.patch(request, department_id, equipment_id)
 
