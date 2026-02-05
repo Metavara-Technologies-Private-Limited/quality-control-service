@@ -36,10 +36,15 @@ class EventReadSerializer(serializers.ModelSerializer):
     equipments = serializers.SerializerMethodField()
     parameters = serializers.SerializerMethodField()
 
-    assignment = serializers.CharField(
+    assignee_id = serializers.IntegerField(
+        source="assignment.id",
+        read_only=True
+    )
+    assignee_name = serializers.CharField(
         source="assignment.emp_name",
         read_only=True
     )
+
     department = serializers.CharField(
         source="department.name",
         read_only=True
@@ -52,13 +57,13 @@ class EventReadSerializer(serializers.ModelSerializer):
             "event_name",
             "description",
             "department",
-            "assignment",
+            "assignee_id",     # ✅ new
+            "assignee_name",   # ✅ new
             "schedule",
             "equipments",
             "parameters",
             "created_at",
         ]
-
     def get_schedule(self, event_instance):
         schedule = (
             event_instance.eventschedule_set
