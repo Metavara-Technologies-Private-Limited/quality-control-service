@@ -27,13 +27,13 @@ jobs:
         run: |
           docker build \
             -f devops/Dockerfile \
-            -t ${{ secrets.DOCKER_USERNAME }}/vidai-backend:latest \
+            -t ${{ secrets.DOCKER_USERNAME }}/quality-backend:latest \
             .
 
       #  Push Backend Docker image
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/vidai-backend:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/quality-backend:latest
 
       #  Deploy Backend to VPS
       - name: Deploy to VPS
@@ -43,14 +43,14 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/vidai-backend:latest
+            docker pull ${{ secrets.DOCKER_USERNAME }}/quality-backend:latest
 
-            docker stop vidai-backend || true
-            docker rm vidai-backend || true
+            docker stop quality-backend || true
+            docker rm quality-backend || true
 
             docker run -d \
               --restart always \
-              --name vidai-backend \
+              --name quality-backend \
               -p 9000:8000 \
-              ${{ secrets.DOCKER_USERNAME }}/vidai-backend:latest
+              ${{ secrets.DOCKER_USERNAME }}/quality-backend:latest
 
