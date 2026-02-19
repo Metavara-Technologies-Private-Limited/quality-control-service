@@ -30,6 +30,7 @@ google-auth==2.38.0
 google-auth-oauthlib==1.0.0
 google-pasta==0.2.0
 grpcio==1.70.0
+gunicorn==25.1.0
 h11==0.16.0
 h5py==3.13.0
 idna==3.10
