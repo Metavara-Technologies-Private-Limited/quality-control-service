@@ -46,7 +46,7 @@ class EnvironmentReadSerializer(serializers.ModelSerializer):
     def get_parameters(self, obj):
         qs = (
             obj.parameters
-            .filter(is_deleted=False)   # ✅ removed is_active filter
+            .filter(is_deleted=False)   # Removed is_active filter
             .order_by("id")
         )
         return EnvironmentParameterReadSerializer(qs, many=True).data

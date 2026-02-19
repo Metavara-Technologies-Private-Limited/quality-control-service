@@ -57,8 +57,8 @@ class EventReadSerializer(serializers.ModelSerializer):
             "event_name",
             "description",
             "department",
-            "assignee_id",     # ✅ new
-            "assignee_name",   # ✅ new
+            "assignee_id",     
+            "assignee_name",   
             "schedule",
             "equipments",
             "parameters",

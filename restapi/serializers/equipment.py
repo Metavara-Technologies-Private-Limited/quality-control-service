@@ -17,7 +17,7 @@ class EquipmentDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = EquipmentDetails
         fields = [
-            "id",              # ✅ MUST BE HERE
+            "id",              
             "equipment_num",
             "make",
             "model",

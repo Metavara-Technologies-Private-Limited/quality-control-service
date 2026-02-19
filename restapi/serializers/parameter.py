@@ -38,7 +38,7 @@ class ParameterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Parameters
         fields = [
-            "id",                 # ✅ REQUIRED
+            "id",                 
             "parameter_name",
             "is_active",
             "config",
