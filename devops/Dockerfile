@@ -26,5 +26,5 @@ RUN python manage.py collectstatic --noinput || true
 
 EXPOSE 8000
 
-CMD ["uvicorn", "django_rest_main.asgi:application", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["gunicorn", "django_rest_main.wsgi:application", "--bind", "0.0.0.0:8000"]
 
