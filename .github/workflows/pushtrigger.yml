@@ -52,10 +52,10 @@ jobs:
               --restart always \
               --name quality-backend \
               -p 8002:8000 \
-              -e DB_HOST=${{ secrets.DB_HOST }} \
-              -e DB_PORT=${{ secrets.DB_PORT }} \
-              -e DB_NAME=${{ secrets.DB_NAME }} \
-              -e DB_USER=${{ secrets.DB_USER }} \
-              -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
+              -e DB_HOST=172.17.0.1 \
+              -e DB_PORT=5432 \
+              -e DB_NAME=stage2_db \
+              -e DB_USER=postgres \
+              -e DB_PASSWORD=sa \
               ${{ secrets.DOCKER_USERNAME }}/quality-backend:latest
 
