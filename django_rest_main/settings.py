@@ -83,13 +83,16 @@ WSGI_APPLICATION = 'django_rest_main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import os
+
 DATABASES = {
-    'default':{
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'stage2_db',
-        'USER': 'postgres',
-        'PASSWORD': 'saimohan',
-        'HOST': 'localhost'
+        'NAME': os.getenv('DB_NAME', 'stage2_db'),
+        'USER': os.getenv('DB_USER', 'postgres'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'saimohan'),
+        'HOST': os.getenv('DB_HOST', '172.17.0.1'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
 
