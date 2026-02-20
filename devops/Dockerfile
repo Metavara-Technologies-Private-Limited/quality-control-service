@@ -9,7 +9,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
-    default-libmysqlclient-dev \
+    postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
@@ -23,7 +23,15 @@ RUN mkdir -p /app/restapi/log && touch /app/restapi/log/api.log
 
 RUN python manage.py collectstatic --noinput || true
 
+RUN python manage.py migrate --noinput || true
+
 EXPOSE 8000
 
-CMD ["gunicorn", "django_rest_main.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD [
+  "gunicorn",
+  "django_rest_main.wsgi:application",
+  "--bind", "0.0.0.0:8000",
+  "--workers", "3",
+  "--timeout", "120"
+]
 
