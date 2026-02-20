@@ -56,6 +56,6 @@ jobs:
               -e DB_PORT=5432 \
               -e DB_NAME=stage2_db \
               -e DB_USER=postgres \
-              -e DB_PASSWORD=sa \
+              -e DB_PASSWORD=saimohan \
               ${{ secrets.DOCKER_USERNAME }}/quality-backend:latest
 
