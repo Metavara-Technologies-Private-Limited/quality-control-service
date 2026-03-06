@@ -41,28 +41,40 @@ class EventEquipment(models.Model):
 # Event Schedule
 # =========================
 class EventSchedule(models.Model):
+
     ONE_TIME = 1
-    WEEKLY = 2
-    MONTHLY = 3
+    DAILY = 2
+    WEEKLY = 3
+    MONTHLY = 4
+    SEMIANNUAL = 5
+    PER_USE = 6
 
     TYPE_CHOICES = (
-        (ONE_TIME, "One Time"),
-        (WEEKLY, "Weekly"),
-        (MONTHLY, "Monthly"),
+        (ONE_TIME, "One Time Event"),
+        (DAILY, "Daily Event"),
+        (WEEKLY, "Weekly Event"),
+        (MONTHLY, "Monthly Event"),
+        (SEMIANNUAL, "Semiannual Event"),
+        (PER_USE, "Per Use Event"),
     )
 
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    type = models.IntegerField(choices=TYPE_CHOICES)
 
-    from_time = models.DateTimeField()
-    to_time = models.DateTimeField()
+    type = models.IntegerField(
+        choices=TYPE_CHOICES
+    )
+
+    from_time = models.DateTimeField(null=True, blank=True)
+    to_time = models.DateTimeField(null=True, blank=True)
 
     one_time_date = models.DateTimeField(null=True, blank=True)
+
     start_date = models.DateTimeField(null=True, blank=True)
     end_date = models.DateTimeField(null=True, blank=True)
 
     months = models.JSONField(null=True, blank=True)
     days = models.JSONField(null=True, blank=True)
+
     recurring_duration = models.IntegerField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)

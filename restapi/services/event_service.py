@@ -13,13 +13,28 @@ from restapi.models import (
     Parameters,
 )
 
+# =========================
+# SCHEDULE TYPE CONSTANTS
+# =========================
+ONE_TIME = 1
+DAILY = 2
+WEEKLY = 3
+MONTHLY = 4
+SEMIANNUAL = 5
+PER_USE = 6
+
 
 # ---------------- VALIDATION ----------------
 def validate_event_create(serializer, attrs):
+
+    # =========================
     # Department
+    # =========================
     department = Department.objects.get(id=attrs["department_id"])
 
+    # =========================
     # Assignment
+    # =========================
     assignment = (
         Employee.objects.get(id=attrs["assignment_id"])
         if attrs.get("assignment_id")
@@ -59,11 +74,53 @@ def validate_event_create(serializer, attrs):
     )
 
     invalid = parameters.exclude(equipment__in=equipments)
+
     if invalid.exists():
         raise ValidationError(
             "Parameters must belong to selected equipments"
         )
 
+    # =========================
+    # VALIDATE SCHEDULE
+    # =========================
+    schedule = attrs.get("schedule", {})
+    schedule_type = schedule.get("type")
+
+    if schedule_type not in [1,2,3,4,5,6]:
+        raise ValidationError("Invalid schedule type")
+
+    # ONE TIME
+    if schedule_type == ONE_TIME:
+        if not schedule.get("one_time_date"):
+            raise ValidationError("one_time_date required for one-time events")
+
+    # DAILY
+    elif schedule_type == DAILY:
+        if not schedule.get("start_date"):
+            raise ValidationError("start_date required for daily schedule")
+
+    # WEEKLY
+    elif schedule_type == WEEKLY:
+        if not schedule.get("days"):
+            raise ValidationError("days required for weekly schedule")
+
+    # MONTHLY
+    elif schedule_type == MONTHLY:
+        if not schedule.get("months"):
+            raise ValidationError("months required for monthly schedule")
+
+    # SEMIANNUAL
+    elif schedule_type == SEMIANNUAL:
+        if not schedule.get("months"):
+            raise ValidationError("months required for semiannual schedule")
+
+    # PER USE
+    elif schedule_type == PER_USE:
+        # No schedule validation needed
+        pass
+
+    
+    
     # Store validated objects
     attrs["department"] = department
     attrs["assignment"] = assignment
