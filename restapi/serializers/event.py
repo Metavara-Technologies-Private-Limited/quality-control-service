@@ -113,7 +113,6 @@ class EventScheduleCreateSerializer(serializers.Serializer):
     days = serializers.JSONField(required=False, allow_null=True)
     recurring_duration = serializers.IntegerField(required=False, allow_null=True)
 
-
 # =========================
 # Event Create Serializer
 # =========================
