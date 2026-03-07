@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'django_rest_main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'stage2_db'),
+        'NAME': os.getenv('DB_NAME', 'qc_db'),
         'USER': os.getenv('DB_USER', 'postgres'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'saimohan'),
         'HOST': os.getenv('DB_HOST', '172.17.0.1'),
