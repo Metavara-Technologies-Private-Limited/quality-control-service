@@ -1,0 +1,65 @@
+name: Quality-control-Backend Push Trigger
+
+on:
+  push:
+    branches:
+      - main
+      - devops-build
+      - staging
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      #  Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      #  Login to Docker Hub
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      #  Build Backend Docker image
+      - name: Build Docker image
+        run: |
+          docker build \
+            -f devops/Dockerfile \
+            -t ${{ secrets.DOCKER_USERNAME }}/quality-backend:latest \
+            .
+
+      #  Push Backend Docker image
+      - name: Push Docker image
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/quality-backend:latest
+
+      #  Deploy Backend to VPS
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: |
+            docker pull ${{ secrets.DOCKER_USERNAME }}/quality-backend:latest
+
+            docker stop quality-backend || true
+            docker rm quality-backend || true
+
+            docker run -d \
+              --restart always \
+              --name quality-backend \
+              -p 8002:8000 \
+              -e DB_HOST="${{ secrets.DB_HOST }}" \
+              -e DB_PORT="${{ secrets.DB_PORT }}" \
+              -e DB_NAME="${{ secrets.DB_NAME }}" \
+              -e DB_USER="${{ secrets.DB_USER }}" \
+              -e DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
+              -e SECRET_KEY="${{ secrets.SECRET_KEY }}" \
+              -e DJANGO_DEBUG="${{ secrets.DJANGO_DEBUG }}" \
+              ${{ secrets.DOCKER_USERNAME }}/quality-backend:latest
+             
+            docker exec quality-backend python manage.py migrate --noinput
