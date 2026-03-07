@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - devops-build
+      - staging
 
 jobs:
   build-and-deploy:
