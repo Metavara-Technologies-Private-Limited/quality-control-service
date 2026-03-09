@@ -27,6 +27,7 @@ def create_clinic(validated_data):
         department_instance = Department.objects.create(
             clinic=clinic,
             name=department_data["name"],
+            type=department_data.get("type", "lab"),   # ✅ ADDED
             is_active=department_data.get("is_active", True),
         )
 
@@ -62,18 +63,27 @@ def update_clinic(instance, validated_data):
                 id=department_id,
                 clinic=instance
             )
+
             department_instance.name = department_data.get(
                 "name", department_instance.name
             )
+
+            department_instance.type = department_data.get(   # ✅ ADDED
+                "type", department_instance.type
+            )
+
             department_instance.is_active = department_data.get(
                 "is_active", department_instance.is_active
             )
+
             department_instance.save()
+
         else:
             # Create new department if ID not provided
             department_instance = Department.objects.create(
                 clinic=instance,
                 name=department_data["name"],
+                type=department_data.get("type", "lab"),   # ✅ ADDED
                 is_active=department_data.get("is_active", True),
             )
 
@@ -143,6 +153,7 @@ def _update_or_create_equipment(
             equipment_instance.is_active
         )
         equipment_instance.save()
+
     else:
         # Create new equipment if ID not provided
         equipment_instance = Equipments.objects.create(
@@ -175,6 +186,7 @@ def _update_or_create_equipment(
                     )
 
             equipment_detail_instance.save()
+
         else:
             # Create new equipment detail
             EquipmentDetails.objects.create(
@@ -207,6 +219,7 @@ def _update_or_create_equipment(
                 parameter_instance.config
             )
             parameter_instance.save()
+
         else:
             # Create new parameter
             Parameters.objects.create(

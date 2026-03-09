@@ -28,7 +28,7 @@ class DepartmentReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Department
-        fields = ['id', 'name', 'is_active', 'equipments']
+        fields = ['id', 'name', 'type', 'is_active', 'equipments']
 
     def get_equipments(self, obj):
         qs = (
@@ -45,18 +45,18 @@ class DepartmentReadSerializer(serializers.ModelSerializer):
 
 class DepartmentWithEnvironmentReadSerializer(serializers.ModelSerializer):
     equipments = serializers.SerializerMethodField()
-    environments = serializers.SerializerMethodField()  # ✅ CHANGED
+    environments = serializers.SerializerMethodField()
 
     class Meta:
         model = Department
         fields = [
             "id",
             "name",
+            "type",
             "is_active",
             "equipments",
-            "environments",   # ✅ CHANGED
+            "environments",
         ]
-
     def get_equipments(self, obj):
         qs = (
             obj.equipments_set

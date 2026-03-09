@@ -12,6 +12,7 @@ def update_department(instance, validated_data):
 
     # Update department fields
     instance.name = validated_data.get("name", instance.name)
+    instance.type = validated_data.get("type", instance.type)  # ✅ ADDED
     instance.is_active = validated_data.get(
         "is_active", instance.is_active
     )
