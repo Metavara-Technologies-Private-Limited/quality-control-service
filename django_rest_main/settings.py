@@ -94,11 +94,18 @@ WSGI_APPLICATION = 'django_rest_main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+<<<<<<< HEAD
         'NAME': os.getenv('DB_NAME', 'qc_db'),
         'USER': os.getenv('DB_USER', 'postgres'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'saimohan'),
         'HOST': os.getenv('DB_HOST', '172.17.0.1'),
         'PORT': os.getenv('DB_PORT', '5432'),
+=======
+        'NAME': 'qc_db', # Update with your actual database name stage2_db
+        'USER': 'postgres',
+        'PASSWORD': 'saimohan',
+        'HOST': 'localhost'
+>>>>>>> 5159b1c (added type in dep)
     }
 }
 
