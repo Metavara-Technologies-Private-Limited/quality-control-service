@@ -44,6 +44,8 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
+            docker system prune -af
+            
             docker pull ${{ secrets.DOCKER_USERNAME }}/quality-backend:latest
 
             docker stop quality-backend || true
