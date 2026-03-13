@@ -9,7 +9,7 @@ from restapi.services.equipment_service import (
 )
 
 # =====================================================
-# Equipment Details Serializer
+# Equipment Details Serializer (WRITE)
 # =====================================================
 class EquipmentDetailSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
@@ -17,22 +17,23 @@ class EquipmentDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = EquipmentDetails
         fields = [
-            "id",              
+            "id",
             "equipment_num",
             "make",
             "model",
+            "parameter_count",   # ✅ NEW — accept from frontend payload and persist
             "is_active",
         ]
+        extra_kwargs = {
+            "make":            {"required": False, "allow_blank": True},
+            "model":           {"required": False, "allow_blank": True},
+            "parameter_count": {"required": False, "allow_null": True},
+        }
 
 
 # =====================================================
 # Equipment Serializer
 # =====================================================
-# This serializer is responsible for:
-# - Creating equipment
-# - Updating equipment
-# - Handling equipment active/inactive state
-# - Managing nested equipment details and parameters
 class EquipmentSerializer(serializers.ModelSerializer):
     # 🔑 equipment_name OPTIONAL for PUT
     equipment_name = serializers.CharField(required=False)
@@ -94,7 +95,14 @@ class EquipmentActivateSerializer(serializers.Serializer):
 class EquipmentDetailReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = EquipmentDetails
-        fields = ['id', 'equipment_num', 'make', 'model', 'is_active']
+        fields = [
+            "id",
+            "equipment_num",
+            "make",
+            "model",
+            "parameter_count",   # ✅ NEW — returned on every GET so frontend card shows correct count
+            "is_active",
+        ]
 
 
 class EquipmentReadSerializer(serializers.ModelSerializer):
@@ -110,7 +118,7 @@ class EquipmentReadSerializer(serializers.ModelSerializer):
             "id",
             "equipment_name",
             "is_active",
-            "created_at", 
+            "created_at",
             "equipment_details",
             "parameters",
         ]

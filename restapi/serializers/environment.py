@@ -70,6 +70,7 @@ class EnvironmentParameterValueReadSerializer(serializers.ModelSerializer):
             "created_at",
             "is_deleted",
             "is_active",
+            "log_time",
             "environment_parameter_id",
         ]
 
